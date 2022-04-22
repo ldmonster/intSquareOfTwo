@@ -67,7 +67,7 @@ func StrConvToBytes(intValue int) bool {
 
 func BitShiftLeft(intValue int, shift int) (int, error){
 	newInt := intValue << shift
-	if newInt < intValue {
+	if newInt == 0 {
 		return 0, fmt.Errorf("overflow shifting of number %d", intValue)
 	}
 	return newInt, nil
@@ -93,6 +93,6 @@ func BitShift(intValue int) bool {
 }
 
 func main() {
-	fmt.Println(BitShift(1))
+	fmt.Println(BitShift(256))
 
 }
