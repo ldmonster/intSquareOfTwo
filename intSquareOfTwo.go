@@ -46,6 +46,9 @@ func SliceOfBytes(intValue int) bool {
 }
 
 func StrConvToBytes(intValue int) bool {
+	if intValue < 0 {
+		intValue = -intValue
+	}
 	if intValue == 1 {
 		return false
 	}
@@ -62,7 +65,34 @@ func StrConvToBytes(intValue int) bool {
 	return firstBitFound
 }
 
+func BitShiftLeft(intValue int, shift int) (int, error){
+	newInt := intValue << shift
+	if newInt < intValue {
+		return 0, fmt.Errorf("overflow shifting of number %d", intValue)
+	}
+	return newInt, nil
+}
+
+func BitShift(intValue int) bool {
+	if intValue < 0 {
+		intValue *= -1
+	}
+	var base int = 2
+	var err error
+	for base <= intValue {
+		if intValue == base {
+			return true
+		}
+		base, err = BitShiftLeft(base, 1)
+		if err != nil {
+			fmt.Printf("Error while shifting: %v",err)
+			return false
+		}
+	}
+	return false
+}
+
 func main() {
-	//fmt.Println(SliceOfBytes(256))
+	fmt.Println(BitShift(1))
 
 }

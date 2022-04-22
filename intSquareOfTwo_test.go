@@ -40,6 +40,24 @@ func TestSliceOfBytesTableDriven(t *testing.T) {
 
 func BenchmarkSliceOfBytes(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		SliceOfBytes(i)
+		for j:=-2048; j <= 2048; j++ {
+			SliceOfBytes(j)
+		}
+	}
+}
+
+func BenchmarkStrConvToBytes(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for j:=-2048; j <= 2048; j++ {
+			StrConvToBytes(j)
+		}
+	}
+}
+
+func BenchmarkBitShift(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for j:=-2048; j <= 2048; j++ {
+			BitShift(j)
+		}
 	}
 }
